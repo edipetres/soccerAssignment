@@ -36,22 +36,21 @@ and open the template in the editor.
         <div id="one">
             
         <form id="View Stats" action="UIServlet">
-            
             <input type="hidden" name="whereTo" value="viewstats" />
-            
             <input type="submit" value="View Stats" name="Submit" />
-            
-            
         </form>
         
         <form id="Edit Stats" action="UIServlet">
-            
             <input type="hidden" name="whereTo" value="edit" />
-            
             <input type="submit" value="Edit Stats" name="Submit" />
-            
-            
         </form>
+            
+        <form id="View Player" action="UIServlet">
+            <input type="hidden" name="whereTo" value="getPlayer" />
+            Player ID<input type="text" name="playerid" value="1"/>
+            <input type="submit" value="Get Player" name="Submit" />
+        </form>
+            
         </div>
         
         
