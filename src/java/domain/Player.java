@@ -15,6 +15,34 @@ public class Player {
     private String playerName;
     private String playerPos;
     private int playerNumber;
-    private String teamId;
+    private String teamid;
+
+    public Player(int playerid, String playerName, String playerPos, int playerNumber, String teamid) {
+        this.playerid = playerid;
+        this.playerName = playerName;
+        this.playerPos = playerPos;
+        this.playerNumber = playerNumber;
+        this.teamid = teamid;
+    }
+
+    public int getPlayerid() {
+        return playerid;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public String getPlayerPos() {
+        return playerPos;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public String getTeamid() {
+        return teamid;
+    }
     
 }

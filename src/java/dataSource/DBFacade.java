@@ -5,6 +5,7 @@
  */
 package dataSource;
 
+import domain.*;
 import java.sql.Connection;
 
 /**
@@ -27,5 +28,9 @@ public class DBFacade {
             instance = new DBFacade();
         }
         return instance;
+    }
+    
+    public Player getPlayer(int playerid) {
+        return sm.getPlayer(playerid,conn);
     }
 }
