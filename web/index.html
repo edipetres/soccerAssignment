@@ -6,13 +6,56 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Soccer Front Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <div>TODO write content</div>
+    <style>
+        body {
+            text-align: center;
+            display: inline-block;
+            padding: 100px;
+        }
         
-        Hello from Daniels Computer
+        #one{
+            display: inline;
+        }
+       
+    </style>
+    <body>
+        <h1>Hello And Welcome To the Soccer stats Site</h1>
+        
+        <br>
+        
+        <h2> What do you want to do?</h2>
+        
+        <br>
+        <br>
+        <br>
+        
+        <div id="one">
+            
+        <form id="View Stats" action="UIServlet">
+            
+            <input type="hidden" name="whereTo" value="viewstats" />
+            
+            <input type="submit" value="View Stats" name="Submit" />
+            
+            
+        </form>
+        
+        <form id="Edit Stats" action="UIServlet">
+            
+            <input type="hidden" name="whereTo" value="edit" />
+            
+            <input type="submit" value="Edit Stats" name="Submit" />
+            
+            
+        </form>
+        </div>
+        
+        
+        
+        
     </body>
 </html>
