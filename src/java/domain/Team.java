@@ -11,4 +11,16 @@ package domain;
  */
 public class Team {
     
+    private String teamId;
+
+    public Team(String teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getTeamId() {
+        return teamId;
+    }
+    
+    
+    
 }

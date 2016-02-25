@@ -11,4 +11,10 @@ package domain;
  */
 public class Player {
     
+    private int playerid;
+    private String playerName;
+    private String playerPos;
+    private int playerNumber;
+    private String teamId;
+    
 }
