@@ -59,7 +59,7 @@ public class TournamentMapper {
             for (Goal goal : listOfGoalsForTheMatch) {
                 int iDofPlayerthatScored = goal.getPlayerId();
                 Player playerThatScored = getPlayer(con, iDofPlayerthatScored);
-                String teamIdOfPlayerThatScored = playerThatScored.getTeamId();
+                String teamIdOfPlayerThatScored = playerThatScored.getTeamid();
                 
                 if(teamIdOfPlayerThatScored.equals(team1Id)){
                     goalsForTeam1++;
@@ -154,8 +154,10 @@ public class TournamentMapper {
     private List<Match> getAllMatches(Connection con) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
+    private Player getPlayer(Connection con, int iDofPlayerthatScored) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
