@@ -63,6 +63,7 @@ public class UIServlet extends HttpServlet {
                break;
                
            case "getallplayers" :
+               
                getAllPlayers(request, response, domainModel);
                break;
            
@@ -87,7 +88,8 @@ public class UIServlet extends HttpServlet {
     }
     
     private void getPlayer(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
-        int playerid = Integer.parseInt(request.getParameter("playerid"));
+        int playerid = 1;
+        playerid = Integer.parseInt(request.getParameter("playerid"));
         Player player = domainModel.getPlayer(playerid);
         //can add an arraylist later
         request.setAttribute("player", player);
@@ -96,6 +98,7 @@ public class UIServlet extends HttpServlet {
     }
      private void getAllPlayers(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
         ArrayList<Player> playerList = domainModel.getAllPlayers();
+         
         request.setAttribute("playerList", playerList);
         RequestDispatcher rd = request.getRequestDispatcher("Players.jsp");
         rd.forward(request, response);

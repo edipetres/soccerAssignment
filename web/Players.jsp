@@ -22,22 +22,22 @@
         %>
         <table>
             <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Position</td>
-                <td>Number</td>
-                <td>Team id</td>
+                <td><b>ID</b></td>
+                <td><b>Name</b></td>
+                <td><b>Position</b></td>
+                <td><b>Number</b></td>
+                <td><b>Team id</b></td>
             </tr>
-            <tr>
-                <td><%= p.getPlayerid()%></td>
-                <td><%= p.getPlayerName()%></td>
-                <td><%= p.getPlayerPos()%></td>
-                <td><%= p.getPlayerNumber()%></td>
-                <td><%= p.getTeamid()%></td>
-            </tr>
+            <%
+            if (p != null) {
+                    out.println("<tr><td> "+p.getPlayerid()+"</td><td> "+p.getPlayerName()+"</td><td> "+p.getPlayerPos()+"</td> <td> "+p.getPlayerNumber()+"</td><td>"+ p.getTeamid()+"</td></tr>");
+                }
+            %>
             <tr><td><h3>All players:</h3></td></tr>
             <%
+                
                 if (playerList != null) {
+                    
                     for (int i = 0; i < playerList.size(); i++) {
                         Player pl = (Player) playerList.get(i);
                         out.println("<tr>"
@@ -50,7 +50,7 @@
                     }
                 }
                 else {
-                    out.println("PlayerList is null");
+                    
                 }
             %>
         </table>
