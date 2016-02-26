@@ -53,35 +53,6 @@ public class SoccerMapper {
         return p;
     }
     
-    public ArrayList<Player> getAllPlayers(Connection conn) {
-        ArrayList<Player> playerList = new ArrayList<>();
-        String sqlString = "select * from player";
-        Statement stmt = null;
-        try {
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlString);
-            while (rs.next()) {
-                Player p = new Player(rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getInt(4),
-                        rs.getString(5));
-                playerList.add(p);
-            }
-        } catch (SQLException ex) {
-            System.out.println("Exception = " + ex);
-        } finally {
-            try {
-                stmt.close();
-            } catch (SQLException ex) {
-                System.out.println("Exception = "+ex);
-            }
-        }
-        System.out.println("--------------------------------");
-        System.out.println("The playerlist is empty: "+playerList.isEmpty());
-        System.out.println("--------------------------------");
-        return playerList;
-    } 
     public boolean updatePlayer(Connection conn, Player newPlayer ){
         
         //It should not be possible to change the playerid!
