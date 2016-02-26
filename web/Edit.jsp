@@ -13,6 +13,15 @@
         <title>Edit stats</title>
     </head>
     <body>
+        <style>
+            #Green{
+                color: green;
+            }
+            
+            
+            
+        </style>
+        
         <h1>Hello From Edit Stats</h1>
         
         <br>
@@ -106,6 +115,16 @@
           
           
         </form>
+        
+        
+        <c:if test = "${true == requestScope.UpdateSucces}">
+            
+            <div id="Green">
+                
+            Player Successfully Added to the Database
+            </div>
+            
+        </c:if>
         
         
     </body>

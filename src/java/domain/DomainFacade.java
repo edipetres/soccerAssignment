@@ -33,4 +33,8 @@ public class DomainFacade {
     public ArrayList<Player> getAllPlayers(){
         return dbf.getAllPlayers();
     }
+
+    public void createPlayer(Player newPlayer) {
+        dbf.createPlayer(newPlayer);
+    }
 }

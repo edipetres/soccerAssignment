@@ -15,7 +15,6 @@
     <body>
         <h1>Hello From the View Stats</h1>
         
-        <form name="back" action="UIServlet">
             
             <table border="1" id="Players">
                 <thead>
@@ -28,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${requestScope.Player}" var = "Player">
+                    <c:forEach items="${requestScope.Players}" var = "Player">
                     <tr>
                         <td>${Player.playerid}</td>
                         <td>${Player.playerName}</td>
@@ -47,6 +46,7 @@
             
             
             
+        <form name="back" action="UIServlet">
             <input type="hidden" name="whereTo" value="back" />
             <input type="submit" value="Back" name="submit" />
         </form>

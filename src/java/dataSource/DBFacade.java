@@ -39,4 +39,8 @@ public class DBFacade {
     public ArrayList<Player> getAllPlayers() {
         return sm.getAllPlayers(conn);
     }
+
+    public void createPlayer(Player newPlayer) {
+        sm.createPlayer(newPlayer, conn);
+    }
 }

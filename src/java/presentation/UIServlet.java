@@ -9,6 +9,7 @@ import domain.DomainFacade;
 import domain.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -54,6 +55,7 @@ public class UIServlet extends HttpServlet {
            
            case "viewstats":
                RequestDispatcher viewStats = request.getRequestDispatcher("ViewStats.jsp");
+               request.setAttribute("Players", domainModel.getAllPlayers());
                viewStats.forward(request, response);
                
                break;
@@ -76,6 +78,16 @@ public class UIServlet extends HttpServlet {
                
            case "getPlayer":
                getPlayer(request,response, domainModel);
+               break;
+               
+           case "CreatePlayer":
+               RequestDispatcher rdPlayerCreated = request.getRequestDispatcher("Edit.jsp");
+               //The id is not used for anything
+               Player newPlayer = new Player(0, request.getParameter("PlayerName"), request.getParameter("PlayerPosition"), parseInt(request.getParameter("PlayerNumber")), request.getParameter("Team"));
+               domainModel.createPlayer(newPlayer);
+               request.setAttribute("UpdateSucces", true);
+               request.setAttribute("Players", domainModel.getAllPlayers());
+               rdPlayerCreated.forward(request, response);
                break;
                
            default:

@@ -6,6 +6,8 @@
 package dataSource;
 
 import domain.*;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -165,6 +167,24 @@ public class SoccerMapper {
         System.out.println("--------------------------------");
         return playerList;
     } 
+
+    void createPlayer(Player newPlayer, Connection conn) {
+        String sql ="INSERT INTO player (player_name,player_position,player_number,Team_id)"
+                + "VALUES(?,?,?,?)";
+        
+        try {
+            PreparedStatement insertStatment = conn.prepareStatement(sql);
+            insertStatment.setString(1, newPlayer.getPlayerName());
+            insertStatment.setString(2, newPlayer.getPlayerPos());
+            insertStatment.setInt(3, newPlayer.getPlayerNumber());
+            insertStatment.setString(4, newPlayer.getTeamid());
+            System.out.println(insertStatment);
+            insertStatment.execute();
+            
+        } catch (SQLException ex) {
+            System.out.println("SQL EXCEPTION IN CreatePlayer " + ex);
+    }
     
-    
+    }
 }
+

@@ -21,8 +21,7 @@ import java.util.List;
  * @author Daniel
  */
 public class TournamentMapper {
-   
-   
+   SoccerMapper sm = new SoccerMapper();
     
     public List<TeamAllInfo> getSortedTeamTable( Connection con){
         
@@ -127,6 +126,11 @@ public class TournamentMapper {
                 System.out.println("Should not go here");
             }
             
+            //Sets the new team info i the map.
+            mapOfTeamInfo.remove(team1Id);
+            mapOfTeamInfo.remove(team2Id);
+            mapOfTeamInfo.put(team1Id, tempTeamOne);
+            mapOfTeamInfo.put(team2Id, tempTeamTwo);
             //Start over agian.
             
         }
@@ -140,23 +144,39 @@ public class TournamentMapper {
         unsortedList.addAll(Collection);
         
         //Sort using  And Comparator
-        return null;
+        
+        
+        return unsortedList;
     }
 
     private List<Team> getAllteams(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Team> hardCodedList = new ArrayList<>();
+        hardCodedList.add(new Team("Aab"));
+        hardCodedList.add(new Team("AGF"));
+        hardCodedList.add(new Team("Brøndby"));
+        hardCodedList.add(new Team("Esbjerg fB"));
+        hardCodedList.add(new Team("FC København"));
+        hardCodedList.add(new Team("FC Midtjylland"));
+        hardCodedList.add(new Team("FC Nordsjælland"));
+        hardCodedList.add(new Team("Hobro IK"));
+        hardCodedList.add(new Team("OB"));
+        hardCodedList.add(new Team("Randers FC"));
+        hardCodedList.add(new Team("Sønderjyske"));
+        hardCodedList.add(new Team("Viborg"));
+        
+        return hardCodedList;
     }
 
     private HashMap<Integer, List<Goal>> getAllGoals(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException();
     }
 
     private List<Match> getAllMatches(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return sm.getMatches(con);
+        }
 
     private Player getPlayer(Connection con, int iDofPlayerthatScored) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sm.getPlayer(iDofPlayerthatScored, con);
     }
     
     
