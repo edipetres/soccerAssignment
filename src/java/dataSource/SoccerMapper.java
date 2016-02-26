@@ -53,22 +53,22 @@ public class SoccerMapper {
         return p;
     }
     
-    public boolean updatePlayer(Connection conn, Player newPlayer ){
+    public boolean updatePlayer(Connection conn, Player player ){
         
         //It should not be possible to change the playerid!
-        int playerId = newPlayer.getPlayerid();
         
-        String sql = "UPDATE Player "
-                + "set Player_name=?,Player_position=?, Player_number=? Team_id=?"
-                + "where Playerid=?";
+        
+        String sql = "update player\n" +
+        "set Player_name = ?,Player_position=?,Player_number=?,Team_id=?\n" +
+        "where Player_id = ?;";
         PreparedStatement updateStatement;
         try {
         updateStatement = conn.prepareStatement(sql);
-        updateStatement.setString(1, newPlayer.getPlayerName());
-        updateStatement.setString(2, newPlayer.getPlayerPos());
-        updateStatement.setInt(3, newPlayer.getPlayerNumber());
-        updateStatement.setString(4, newPlayer.getTeamid());
-        updateStatement.setInt(5, playerId);
+        updateStatement.setString(1, player.getPlayerName());
+        updateStatement.setString(2, player.getPlayerPos());
+        updateStatement.setInt(3, player.getPlayerNumber());
+        updateStatement.setString(4, player.getTeamid());
+        updateStatement.setInt(5, player.getPlayerid());
         return updateStatement.execute();
         } catch (SQLException ex) {
             System.out.println("SQL EX IN Update Player" + ex);
@@ -160,9 +160,6 @@ public class SoccerMapper {
                 System.out.println("Exception = "+ex);
             }
         }
-        System.out.println("--------------------------------");
-        System.out.println("The playerlist is empty: "+playerList.isEmpty());
-        System.out.println("--------------------------------");
         return playerList;
     } 
     
