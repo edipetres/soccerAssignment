@@ -7,6 +7,8 @@ package dataSource;
 
 import domain.*;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,5 +34,9 @@ public class DBFacade {
     
     public Player getPlayer(int playerid) {
         return sm.getPlayer(playerid,conn);
+    }
+    
+    public ArrayList<Player> getAllPlayers() {
+        return sm.getAllPlayers(conn);
     }
 }

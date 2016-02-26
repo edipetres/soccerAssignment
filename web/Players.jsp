@@ -4,6 +4,7 @@
     Author     : edipetres
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="domain.Player"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,8 +15,10 @@
     </head>
     <body>
         <h1>Here is your player</h1>
-        <% 
-        Player p = (Player) request.getAttribute("player");
+        <%
+            Player p = (Player) request.getAttribute("player");
+            ArrayList<Player> playerList = (ArrayList<Player>) request.getAttribute("playerList");
+
         %>
         <table>
             <tr>
@@ -32,11 +35,33 @@
                 <td><%= p.getPlayerNumber()%></td>
                 <td><%= p.getTeamid()%></td>
             </tr>
+            <tr><td><h3>All players:</h3></td></tr>
+            <%
+                if (playerList != null) {
+                    for (int i = 0; i < playerList.size(); i++) {
+                        Player pl = (Player) playerList.get(i);
+                        out.println("<tr>"
+                                + "<td>" + pl.getPlayerid() + "</td>"
+                                + "<td>" + pl.getPlayerName() + "</td>"
+                                + "<td>" + pl.getPlayerPos() + "</td>"
+                                + "<td>" + pl.getPlayerNumber() + "</td>"
+                                + "<td>" + pl.getTeamid() + "</td>"
+                                + "</tr>");
+                    }
+                }
+                else {
+                    out.println("PlayerList is null");
+                }
+            %>
         </table>
-            <form action="UIServlet">
-                <input type="text" name="playerid" value="" size="4" />
-                <input type="hidden" name="whereTo" value="getplayerwithid">
-                <input type="submit" value="Get player">
-            </form>
+        <form action="UIServlet">
+            <input type="text" name="playerid" value="" size="4" />
+            <input type="hidden" name="whereTo" value="getplayerwithid">
+            <input type="submit" value="Get player">
+        </form>
+        <form action="UIServlet"> 
+            <input type="hidden" name="whereTo" value="getallplayers">
+            <input type="submit" value="Show All Players">
+        </form>
     </body>
 </html>
