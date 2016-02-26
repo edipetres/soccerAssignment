@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,4 +48,89 @@ public class SoccerMapper {
         }
         return p;
     }
+    
+    public boolean updatePlayer(Connection conn, Player newPlayer ){
+        
+        //It should not be possible to change the playerid!
+        int playerId = newPlayer.getPlayerid();
+        
+        String sql = "UPDATE Player "
+                + "set Player_name=?,Player_position=?, Player_number=? Team_id=?"
+                + "where Playerid=?";
+        PreparedStatement updateStatement;
+        try {
+        updateStatement = conn.prepareStatement(sql);
+        updateStatement.setString(1, newPlayer.getPlayerName());
+        updateStatement.setString(2, newPlayer.getPlayerPos());
+        updateStatement.setInt(3, newPlayer.getPlayerNumber());
+        updateStatement.setString(4, newPlayer.getTeamid());
+        updateStatement.setInt(5, playerId);
+        return updateStatement.execute();
+        } catch (SQLException ex) {
+            System.out.println("SQL EX IN Update Player" + ex);
+        }
+        return false;
+    }
+    
+    public List<Goal> getAllGoals(Connection conn){
+        
+        String sql = "Select * from goal";
+        ArrayList<Goal> allgoals = new ArrayList<>();
+        try {
+            PreparedStatement getGoals = conn.prepareStatement(sql);
+            ResultSet rs = getGoals.executeQuery();
+            
+            while(rs.next()){
+                Goal temp = new Goal(rs.getInt("Goal_id"), rs.getInt("Player_id"), rs.getInt("Match_id"), rs.getString("Goal_type"));
+                allgoals.add(temp);
+            }
+            
+            return allgoals;
+        } catch (SQLException ex) {
+            System.out.println("SQL EX IN GET ALL GOALS "  + ex );
+        }
+        return null;
+    }
+    
+    public List<Match> getMatches(Connection conn){
+        
+        String sql = "Select * from match";
+        ArrayList<Match> allMatches = new ArrayList<>();
+        try {
+            PreparedStatement getGoals = conn.prepareStatement(sql);
+            ResultSet rs = getGoals.executeQuery();
+            
+            while(rs.next()){
+                Match temp = new Match(rs.getInt("Match_id"), rs.getString("Team1_id"), rs.getString("Team2_id"));
+                allMatches.add(temp);
+            }
+            
+            return allMatches;
+        } catch (SQLException ex) {
+            System.out.println("SQL EX IN GET ALL Matches "  + ex );
+        }
+        return null;
+    }
+    
+    public List<Team> getTeams(Connection conn){
+        
+        String sql = "Select * from team";
+        ArrayList<Team> allTeams = new ArrayList<>();
+        try {
+            PreparedStatement getGoals = conn.prepareStatement(sql);
+            ResultSet rs = getGoals.executeQuery();
+            
+            while(rs.next()){
+                Team temp = new Team(rs.getString("Team_id"));
+                allTeams.add(temp);
+            }
+            
+            return allTeams;
+        } catch (SQLException ex) {
+            System.out.println("SQL EX IN GET ALL Teams "  + ex );
+        }
+        return null;
+    }
+    
+    
 }
