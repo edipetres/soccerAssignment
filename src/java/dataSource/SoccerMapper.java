@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,7 +20,10 @@ import java.util.logging.Logger;
  *
  * @author edipetres
  */
+
+
 public class SoccerMapper {
+    
     public Player getPlayer(int playerid, Connection conn){
         Player p = null;
         String sqlString = "select * from player where Player_id=?";
@@ -131,6 +135,36 @@ public class SoccerMapper {
         }
         return null;
     }
+    
+     public ArrayList<Player> getAllPlayers(Connection conn) {
+        ArrayList<Player> playerList = new ArrayList<>();
+        String sqlString = "select * from player";
+        Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlString);
+            while (rs.next()) {
+                Player p = new Player(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getString(5));
+                playerList.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Exception = " + ex);
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException ex) {
+                System.out.println("Exception = "+ex);
+            }
+        }
+        System.out.println("--------------------------------");
+        System.out.println("The playerlist is empty: "+playerList.isEmpty());
+        System.out.println("--------------------------------");
+        return playerList;
+    } 
     
     
 }

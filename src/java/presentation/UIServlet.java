@@ -9,6 +9,8 @@ import domain.DomainFacade;
 import domain.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +60,11 @@ public class UIServlet extends HttpServlet {
            
            case "getplayerwithid":
                getPlayer(request,response, domainModel);
+               break;
+               
+           case "getallplayers" :
+               getAllPlayers(request, response, domainModel);
+               break;
            
            case "edit":
                RequestDispatcher edit = request.getRequestDispatcher("Edit.jsp");
@@ -85,6 +92,12 @@ public class UIServlet extends HttpServlet {
         Player player = domainModel.getPlayer(playerid);
         //can add an arraylist later
         request.setAttribute("player", player);
+        RequestDispatcher rd = request.getRequestDispatcher("Players.jsp");
+        rd.forward(request, response);
+    }
+     private void getAllPlayers(HttpServletRequest request, HttpServletResponse response, DomainFacade domainModel) throws ServletException, IOException {
+        ArrayList<Player> playerList = domainModel.getAllPlayers();
+        request.setAttribute("playerList", playerList);
         RequestDispatcher rd = request.getRequestDispatcher("Players.jsp");
         rd.forward(request, response);
     }
@@ -127,5 +140,7 @@ public class UIServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+   
 
 }

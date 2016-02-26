@@ -6,6 +6,8 @@
 package domain;
 
 import dataSource.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,5 +28,9 @@ public class DomainFacade {
     
     public Player getPlayer(int playerid) {
         return dbf.getPlayer(playerid);
+    }
+    
+    public ArrayList<Player> getAllPlayers(){
+        return dbf.getAllPlayers();
     }
 }
