@@ -24,7 +24,7 @@
             Player:
             
             <select name="PlayerDropDown">
-                <c:forEach items = "${sessionScope.Players}" var = "Player">
+                <c:forEach items = "${requestScope.Players}" var = "Player">
                     <option value="${Player.playerid}">${Player.teamid} - ${Player.playerName}  </option>
                 </c:forEach>
             </select>

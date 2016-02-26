@@ -68,7 +68,7 @@ public class UIServlet extends HttpServlet {
            
            case "edit":
                RequestDispatcher edit = request.getRequestDispatcher("Edit.jsp");
-//               session.setAttribute("Players", domainModel.getAllPlayer());
+               request.setAttribute("Players", domainModel.getAllPlayers());
                edit.forward(request, response);
                break;
                
